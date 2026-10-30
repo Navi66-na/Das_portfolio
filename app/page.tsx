@@ -66,6 +66,16 @@ function ProjectVisual({ tone, label }: { tone: string; label: string }) {
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [enquiryOpen, setEnquiryOpen] = useState(false);
+  const [projectType, setProjectType] = useState("Website / Web App");
+  const [visitorEmail, setVisitorEmail] = useState("");
+  const [projectDetails, setProjectDetails] = useState("");
+  const sendEnquiry = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const subject = encodeURIComponent("Portfolio enquiry: " + projectType);
+    const body = encodeURIComponent("Project type: " + projectType + "\nContact email: " + visitorEmail + "\n\nProject details:\n" + projectDetails);
+    window.location.href = "mailto:dasbuttu1266@gmail.com?subject=" + subject + "&body=" + body;
+  };
   const closeMenu = () => setMenuOpen(false);
   return <main>
     <div className="ambient ambient-one"/><div className="ambient ambient-two"/>
@@ -112,8 +122,11 @@ export default function Home() {
     </section>
 
     <section id="contact" className="contact-section section-wrap">
-      <Reveal className="contact-panel"><div className="contact-orb"/><div className="section-label"><span>05</span> / GET IN TOUCH</div><h2>Have an idea?<br/><span className="gradient-text">Let's make it real.</span></h2><p>I'm always open to meaningful conversations, collaborations and opportunities to learn something new.</p><a className="button button-primary" href="#home">START A CONVERSATION <ArrowUpRight size={15}/></a><div className="contact-bottom"><span>THANKS FOR STOPPING BY</span><span>DAS · 2026</span></div></Reveal>
+      <Reveal className="contact-panel"><div className="contact-orb"/><div className="section-label"><span>05</span> / GET IN TOUCH</div><h2>Have an idea?<br/><span className="gradient-text">Let's make it real.</span></h2><p>I'm always open to meaningful conversations, collaborations and opportunities to learn something new.</p><button type="button" className="button button-primary" onClick={() => setEnquiryOpen(true)}>START A CONVERSATION <ArrowUpRight size={15}/></button><div className="contact-bottom"><span>THANKS FOR STOPPING BY</span><span>DAS · 2026</span></div></Reveal>
     </section>
+
+
+    {enquiryOpen && <div className="enquiry-overlay" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setEnquiryOpen(false); }}><section className="enquiry-modal" role="dialog" aria-modal="true" aria-labelledby="enquiry-title"><button type="button" className="enquiry-close" onClick={() => setEnquiryOpen(false)} aria-label="Close enquiry form"><X size={20}/></button><div className="section-label"><span>LET'S TALK</span> / PROJECT ENQUIRY</div><h2 id="enquiry-title">Tell me what<br/><span className="gradient-text">you want to build.</span></h2><p className="enquiry-intro">Share a few details and your email app will open with a ready-to-send enquiry.</p><form onSubmit={sendEnquiry} className="enquiry-form"><label htmlFor="visitor-email">YOUR EMAIL</label><input id="visitor-email" type="email" required placeholder="you@example.com" value={visitorEmail} onChange={(event) => setVisitorEmail(event.target.value)}/><label htmlFor="project-type">WHAT DO YOU NEED?</label><select id="project-type" value={projectType} onChange={(event) => setProjectType(event.target.value)}><option>Website / Web App</option><option>Android / Mobile App</option><option>UI / UX Design</option><option>Custom Project</option></select><label htmlFor="project-details">PROJECT DETAILS</label><textarea id="project-details" required rows={4} placeholder="Describe your idea, goals, features or timeline..." value={projectDetails} onChange={(event) => setProjectDetails(event.target.value)}/><button className="button button-primary enquiry-submit" type="submit">CONTINUE TO EMAIL <ArrowUpRight size={15}/></button></form><p className="enquiry-note">Your message is addressed to my project inbox. You can review it and press Send in your email app.</p></section></div>}
 
     <footer className="site-footer section-wrap"><a className="logo" href="#home">DAS<span>.</span></a><p>Designed with curiosity. Built with purpose.</p><div className="footer-links"><a href="#home">BACK TO TOP ↑</a><a href="#work">PROJECTS</a></div></footer>
   </main>;
