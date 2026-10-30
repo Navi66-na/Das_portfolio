@@ -69,7 +69,7 @@ export default function Home() {
   const closeMenu = () => setMenuOpen(false);
   return <main>
     <div className="ambient ambient-one"/><div className="ambient ambient-two"/>
-    <header className="site-header"><a href="#home" className="logo">DAS<span>.</span></a>
+    <header className="site-header"><a href="#home" className="logo logo-mark"><span className="logo-word">DAS</span><span className="logo-dot">/</span></a>
       <nav className={menuOpen ? "nav-links open" : "nav-links"}><a onClick={closeMenu} href="#about">About</a><a onClick={closeMenu} href="#skills">Expertise</a><a onClick={closeMenu} href="#work">Projects</a><a onClick={closeMenu} href="#journey">Journey</a></nav>
       <a className="header-cta" href="#contact">LET'S CONNECT <ArrowUpRight size={14}/></a>
       <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">{menuOpen ? <X/> : <Menu/>}</button>
@@ -91,13 +91,9 @@ export default function Home() {
       <Reveal className="section-label"><span>01</span> / THE PERSON BEHIND THE PIXELS</Reveal>
       <div className="intro-grid">
         <Reveal><h2>Not just learning<br/>technology. <span className="gradient-text">Building with it.</span></h2></Reveal>
-        <Reveal delay={100}><div className="intro-copy"><p>I'm currently pursuing a <strong>B.Sc. in Computer Science at Sri Vasavi College.</strong> I enjoy learning by making things — experimenting with interfaces, building applications and understanding the systems behind them.</p><p>Cybersecurity is my strongest interest, alongside web development, cloud technologies and AI. My approach is simple: stay curious, build with purpose and improve with every project.</p><div className="signature">DAS<span>.</span></div></div></Reveal>
+        <Reveal delay={100}><div className="intro-copy"><p>I'm currently pursuing a <strong>B.Sc. in Computer Science at Sri Vasavi College.</strong> I enjoy learning by making things — experimenting with interfaces, building applications and understanding the systems behind them.</p><p>Cybersecurity is my strongest interest, alongside web development, cloud technologies and AI. My approach is simple: stay curious, build with purpose and improve with every project.</p></div></Reveal>
       </div>
-      <Reveal className="about-cards" delay={120}>
-        <div className="about-tile tile-education"><small>EDUCATION</small><b>B.Sc. Computer Science</b><span>Sri Vasavi College</span><div className="tile-index">01</div></div>
-        <div className="about-tile tile-focus"><small>PRIMARY INTEREST</small><b>Cybersecurity</b><span>Security · Networking · Ethical practice</span><div className="tile-index">02</div></div>
-        <div className="about-tile tile-location"><small>LOCATION</small><b>Tamil Nadu</b><span>India</span><div className="tile-index">03</div></div>
-      </Reveal>
+>
     </section>
 
     <section id="skills" className="skills-section section-wrap">
@@ -107,7 +103,7 @@ export default function Home() {
 
     <section id="work" className="work-section section-wrap">
       <Reveal className="section-heading"><div><div className="section-label"><span>03</span> / SELECTED WORK</div><h2>Made through <span className="gradient-text">curiosity.</span></h2></div><p>Personal builds and experiments. Each project is a chance to turn an idea into something people can interact with.</p></Reveal>
-      <div className="projects-grid">{projects.map((project, i) => <Reveal key={project.id} delay={i*100}><article className="project-card"><ProjectVisual tone={project.tone} label={project.label}/><div className="project-info"><div className="project-number">PROJECT {project.id} <span>{project.type}</span></div><div className="project-title-row"><h3>{project.name}</h3><span className="project-arrow"><ArrowUpRight size={19}/></span></div><p>{project.desc}</p><div className="project-tags">{project.tags.map(tag=><span key={tag}>{tag}</span>)}</div></div></article></Reveal>)}</div>
+      <div className="projects-grid">{projects.map((project, i) => <Reveal key={project.id} delay={i*100}><article className="project-card"><ProjectVisual tone={project.tone} label={project.label}/><div className="project-info"><div className="project-number">PROJECT {project.id} <span>{project.type}</span></div><div className="project-title-row"><h3>{project.name}</h3>{project.id === "01" ? <a className="project-arrow" href="https://deal-vault-lux.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open DealVault Luxe website"><ArrowUpRight size={19}/></a> : <span className="project-arrow"><ArrowUpRight size={19}/></span>}</div><p>{project.desc}</p><div className="project-tags">{project.tags.map(tag=><span key={tag}>{tag}</span>)}</div></div></article></Reveal>)}</div>
       <Reveal><div className="work-note"><span className="status-dot"/> MORE EXPERIMENTS AND BUILDS COMING SOON</div></Reveal>
     </section>
 
