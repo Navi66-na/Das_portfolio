@@ -117,7 +117,7 @@ export default function Home() {
     </section>
 
     <section id="contact" className="contact-section section-wrap">
-      <Reveal className="contact-panel"><div className="contact-orb"/><div className="section-label"><span>05</span> / GET IN TOUCH</div><h2>Have an idea?<br/><span className="gradient-text">Let's make it real.</span></h2><p>I'm always open to meaningful conversations, collaborations and opportunities to learn something new.</p><a className="button button-primary" href="mailto:hello@dasportfolio.dev">START A CONVERSATION <ArrowUpRight size={15}/></a><div className="contact-bottom"><span>THANKS FOR STOPPING BY</span><span>DAS · 2026</span></div></Reveal>
+      <Reveal className="contact-panel"><div className="contact-orb"/><div className="section-label"><span>05</span> / GET IN TOUCH</div><h2>Have an idea?<br/><span className="gradient-text">Let's make it real.</span></h2><p>I'm always open to meaningful conversations, collaborations and opportunities to learn something new.</p><a className="button button-primary" href="#home">START A CONVERSATION <ArrowUpRight size={15}/></a><div className="contact-bottom"><span>THANKS FOR STOPPING BY</span><span>DAS · 2026</span></div></Reveal>
     </section>
 
     <footer className="site-footer section-wrap"><a className="logo" href="#home">DAS<span>.</span></a><p>Designed with curiosity. Built with purpose.</p><div className="footer-links"><a href="#home">BACK TO TOP ↑</a><a href="#work">PROJECTS</a></div></footer>
