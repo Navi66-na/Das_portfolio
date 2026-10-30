@@ -91,7 +91,7 @@ export default function Home() {
         <Reveal delay={80}><h1>Curiosity into<br/><span className="gradient-text">creation.</span></h1></Reveal>
         <Reveal delay={150}><p className="hero-lead">I'm Das — a developer in progress, exploring the space where technology, design and real-world ideas meet. I build digital experiences and keep learning what makes them better.</p></Reveal>
         <Reveal delay={220}><div className="hero-actions"><a className="button button-primary" href="#work">EXPLORE MY WORK <ArrowUpRight size={15}/></a><a className="button button-quiet" href="#about">MORE ABOUT ME <ArrowDownRight size={15}/></a></div></Reveal>
-        <Reveal delay={280}><div className="hero-meta"><span>BASED IN TAMIL NADU, INDIA</span><span>OPEN TO LEARNING & COLLABORATION</span></div></Reveal>
+        <Reveal delay={280}><div className="hero-meta"><span>OPEN TO LEARNING & COLLABORATION</span></div></Reveal>
       </div>
       <Reveal className="hero-art-wrap" delay={180}><DashboardVisual/></Reveal>
       <div className="scroll-cue"><span/> SCROLL TO EXPLORE</div>
@@ -101,7 +101,7 @@ export default function Home() {
       <Reveal className="section-label"><span>01</span> / THE PERSON BEHIND THE PIXELS</Reveal>
       <div className="intro-grid">
         <Reveal><h2>Not just learning<br/>technology. <span className="gradient-text">Building with it.</span></h2></Reveal>
-        <Reveal delay={100}><div className="intro-copy"><p>I'm currently pursuing a <strong>B.Sc. in Computer Science at Sri Vasavi College.</strong> I enjoy learning by making things — experimenting with interfaces, building applications and understanding the systems behind them.</p><p>Cybersecurity is my strongest interest, alongside web development, cloud technologies and AI. My approach is simple: stay curious, build with purpose and improve with every project.</p></div></Reveal>
+        <Reveal delay={100}><div className="intro-copy"><p>I enjoy learning by making things — experimenting with interfaces, building applications and understanding the systems behind them.</p><p>Cybersecurity is my strongest interest, alongside web development, cloud technologies and AI. My approach is simple: stay curious, build with purpose and improve with every project.</p></div></Reveal>
       </div>
     </section>
 
