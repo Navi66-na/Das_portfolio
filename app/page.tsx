@@ -93,7 +93,6 @@ export default function Home() {
         <Reveal><h2>Not just learning<br/>technology. <span className="gradient-text">Building with it.</span></h2></Reveal>
         <Reveal delay={100}><div className="intro-copy"><p>I'm currently pursuing a <strong>B.Sc. in Computer Science at Sri Vasavi College.</strong> I enjoy learning by making things — experimenting with interfaces, building applications and understanding the systems behind them.</p><p>Cybersecurity is my strongest interest, alongside web development, cloud technologies and AI. My approach is simple: stay curious, build with purpose and improve with every project.</p></div></Reveal>
       </div>
->
     </section>
 
     <section id="skills" className="skills-section section-wrap">
