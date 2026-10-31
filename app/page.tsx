@@ -70,11 +70,29 @@ export default function Home() {
   const [projectType, setProjectType] = useState("Website / Web App");
   const [visitorEmail, setVisitorEmail] = useState("");
   const [projectDetails, setProjectDetails] = useState("");
-  const sendEnquiry = (event: React.FormEvent<HTMLFormElement>) => {
+  const [sending, setSending] = useState(false);
+  const [enquiryStatus, setEnquiryStatus] = useState("");
+  const sendEnquiry = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const subject = encodeURIComponent("Portfolio enquiry: " + projectType);
-    const body = encodeURIComponent("Project type: " + projectType + "\nContact email: " + visitorEmail + "\n\nProject details:\n" + projectDetails);
-    window.location.href = "mailto:dasbuttu1266@gmail.com?subject=" + subject + "&body=" + body;
+    setSending(true);
+    setEnquiryStatus("");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: visitorEmail, projectType, details: projectDetails }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Unable to send your enquiry right now.");
+      setEnquiryStatus("Your enquiry has been sent successfully. Thank you!");
+      setVisitorEmail("");
+      setProjectDetails("");
+      setProjectType("Website / Web App");
+    } catch (error) {
+      setEnquiryStatus(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
   const closeMenu = () => setMenuOpen(false);
   return <main>
@@ -126,7 +144,7 @@ export default function Home() {
     </section>
 
 
-    {enquiryOpen && <div className="enquiry-overlay" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setEnquiryOpen(false); }}><section className="enquiry-modal" role="dialog" aria-modal="true" aria-labelledby="enquiry-title"><button type="button" className="enquiry-close" onClick={() => setEnquiryOpen(false)} aria-label="Close enquiry form"><X size={20}/></button><div className="section-label"><span>LET'S TALK</span> / PROJECT ENQUIRY</div><h2 id="enquiry-title">Tell me what<br/><span className="gradient-text">you want to build.</span></h2><p className="enquiry-intro">Share a few details and your email app will open with a ready-to-send enquiry.</p><form onSubmit={sendEnquiry} className="enquiry-form"><label htmlFor="visitor-email">YOUR EMAIL</label><input id="visitor-email" type="email" required placeholder="you@example.com" value={visitorEmail} onChange={(event) => setVisitorEmail(event.target.value)}/><label htmlFor="project-type">WHAT DO YOU NEED?</label><select id="project-type" value={projectType} onChange={(event) => setProjectType(event.target.value)}><option>Website / Web App</option><option>Android / Mobile App</option><option>UI / UX Design</option><option>Custom Project</option></select><label htmlFor="project-details">PROJECT DETAILS</label><textarea id="project-details" required rows={4} placeholder="Describe your idea, goals, features or timeline..." value={projectDetails} onChange={(event) => setProjectDetails(event.target.value)}/><button className="button button-primary enquiry-submit" type="submit">CONTINUE TO EMAIL <ArrowUpRight size={15}/></button></form><p className="enquiry-note">Your message is addressed to my project inbox. You can review it and press Send in your email app.</p></section></div>}
+    {enquiryOpen && <div className="enquiry-overlay" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setEnquiryOpen(false); }}><section className="enquiry-modal" role="dialog" aria-modal="true" aria-labelledby="enquiry-title"><button type="button" className="enquiry-close" onClick={() => setEnquiryOpen(false)} aria-label="Close enquiry form"><X size={20}/></button><div className="section-label"><span>LET'S TALK</span> / PROJECT ENQUIRY</div><h2 id="enquiry-title">Tell me what<br/><span className="gradient-text">you want to build.</span></h2><p className="enquiry-intro">Share your idea and send it directly from this form.</p><form onSubmit={sendEnquiry} className="enquiry-form"><label htmlFor="visitor-email">YOUR EMAIL</label><input id="visitor-email" type="email" required placeholder="you@example.com" value={visitorEmail} onChange={(event) => setVisitorEmail(event.target.value)}/><label htmlFor="project-type">WHAT DO YOU NEED?</label><select id="project-type" value={projectType} onChange={(event) => setProjectType(event.target.value)}><option>Website / Web App</option><option>Android / Mobile App</option><option>UI / UX Design</option><option>Custom Project</option></select><label htmlFor="project-details">PROJECT DETAILS</label><textarea id="project-details" required rows={4} placeholder="Describe your idea, goals, features or timeline..." value={projectDetails} onChange={(event) => setProjectDetails(event.target.value)}/><button className="button button-primary enquiry-submit" type="submit" disabled={sending}>{sending ? "SENDING..." : "SUBMIT ENQUIRY"} <ArrowUpRight size={15}/></button><p className="enquiry-status" role="status" aria-live="polite">{enquiryStatus}</p></form><p className="enquiry-note">Your details are used only to respond to your project enquiry.</p></section></div>}
 
     <footer className="site-footer section-wrap"><a className="logo" href="#home">DAS<span>.</span></a><p>Designed with curiosity. Built with purpose.</p><div className="footer-links"><a href="#home">BACK TO TOP ↑</a><a href="#work">PROJECTS</a></div></footer>
   </main>;
