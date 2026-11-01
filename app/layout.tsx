@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: { default: "Das | Web Developer & Digital Creator", template: "%s | Das" },
   description: "Personal portfolio of Das, showcasing web development, UI/UX design, digital projects and interests in cybersecurity and emerging technology. Explore selected work and get in touch.",
   applicationName: "Das Portfolio",
+  verification: { google: "wZTLXaEv0YUd5ZNa3yb5oCjG6IffsN4IQc8EoB2-HNk" },
   authors: [{ name: "Das" }],
   creator: "Das",
   category: "technology",
